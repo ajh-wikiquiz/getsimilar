@@ -1,0 +1,11 @@
+gensim
+python-Levenshtein-wheels
+PyDictionary
+fastapi
+graphene
+orjson
+uvicorn
+uvloop
+httptools
+gunicorn
+redis
