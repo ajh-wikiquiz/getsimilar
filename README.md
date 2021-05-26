@@ -3,9 +3,9 @@ Returns words similar to the text in descending order of similarity.
 
 This is intended to be deployed as a web service.  
 Try it out here:  
-    - GET https://getimportant.herokuapp.com/similar?text=game  
-    - GET https://getimportant.herokuapp.com/similar/game  
-    - https://getimportant.herokuapp.com/graphql  
+    - GET https://ajh-getsimilar.herokuapp.com/similar?text=game  
+    - GET https://ajh-getsimilar.herokuapp.com/similar/game  
+    - https://ajh-getsimilar.herokuapp.com/graphql  
 
 
 ### Example input
@@ -15,7 +15,7 @@ game
 
 
 ### Example output
-```
+```json
 {
     "data": {
         "similar": [

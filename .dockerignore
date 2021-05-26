@@ -2,7 +2,7 @@
 **/.vscode/
 **/ml_model/
 /.git/
-/notebooks/
+/notebook/
 /venv/
 /.dockerignore
 /.editorconfig
