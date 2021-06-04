@@ -7,6 +7,7 @@ Try it out here:
     - GET https://ajh-getsimilar.herokuapp.com/similar/game  
     - https://ajh-getsimilar.herokuapp.com/graphql  
 
+See more details here: https://ajh-getsimilar.herokuapp.com/docs
 
 ### Example input
 ```

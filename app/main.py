@@ -1,6 +1,6 @@
 from app.lib.cache import cache, get_cache
 from app.lib.getsimilar import get_similar
-from app.lib.models import SimilarREST, SimilarGraphQL
+from app.lib.models import SimilarRequestPOST, SimilarResponseREST, SimilarResponseGraphQL
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,16 +24,21 @@ app.add_middleware(
 
 
 # Routes
-@app.get('/similar', response_model=Dict[str, Dict[str, List[SimilarREST]]], response_class=ORJSONResponse)
-@app.get('/similar/{text}', response_model=Dict[str, Dict[str, List[SimilarREST]]], response_class=ORJSONResponse)
-async def similar_text(text: str, topn: int = 10):
+@app.get('/similar', response_model=Dict[str, Dict[str, List[SimilarResponseREST]]], response_class=ORJSONResponse)
+@app.get('/similar/{text}', response_model=Dict[str, Dict[str, List[SimilarResponseREST]]], response_class=ORJSONResponse)
+async def similar_get(text: str, topn: int = 10):
   return {'data': {'similar': get_cache(get_similar, text, topn)}}
+
+
+@app.post('/similar', response_model=Dict[str, Dict[str, List[SimilarResponseREST]]], response_class=ORJSONResponse)
+async def similar_post(request: SimilarRequestPOST):
+  return {'data': {'similar': get_cache(get_similar, request.text, request.topn)}}
 
 
 # GraphQL
 class Query(graphene.ObjectType):
   similar = graphene.List(
-    SimilarGraphQL,
+    SimilarResponseGraphQL,
     text=graphene.String(required=True),
     topn=graphene.Int(default_value=10),
   )
